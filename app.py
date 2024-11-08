@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from groq import Groq
 import requests
 import PyPDF2
+import os
 from io import BytesIO
 from PyPDF2 import PdfReader
 import requests
@@ -277,4 +278,4 @@ Return a valid JSON output without any other lines of text.
         return jsonify({"error": "Response is not valid JSON."}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
